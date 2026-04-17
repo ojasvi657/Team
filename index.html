@@ -80,11 +80,20 @@ header div{opacity:.9}
 
 <script>
 var profiles=[
-{name:"Ankit Sharma",designation:"Data Engineer",photo:"https://randomuser.me/api/portraits/men/1.jpg",skills:["Python","SQL"],status:"busy",currentProject:"Retail Demand Forecasting",experience:[{client:"Reliance Retail",project:"Sales Forecasting Pipeline",duration:"2023-2024"},{client:"Flipkart",project:"Customer Segmentation",duration:"2022-2023"}]},
-{name:"Priya Verma",designation:"SAP Data Consultant",photo:"https://randomuser.me/api/portraits/women/2.jpg",skills:["SAP","ABAP"],status:"available",currentProject:null,experience:[{client:"Infosys",project:"Data Migration (SAP BW)",duration:"2022-2023"},{client:"TCS",project:"Reporting Dashboard",duration:"2021-2022"}]},
-{name:"Rahul Mehta",designation:"Data Analyst",photo:"https://randomuser.me/api/portraits/men/3.jpg",skills:["SQL","Power BI"],status:"rolling",currentProject:"Finance KPI Dashboard",endDate:"Jun 2026",experience:[{client:"HDFC Bank",project:"Financial Analytics Dashboard",duration:"2023-2024"},{client:"ICICI",project:"Loan Risk Analysis",duration:"2022-2023"}]},
-{name:"Sneha Iyer",designation:"ML Engineer",photo:"https://randomuser.me/api/portraits/women/4.jpg",skills:["ML","Python"],status:"busy",currentProject:"Customer Churn Model",experience:[{client:"Airtel",project:"Churn Prediction",duration:"2023-2024"},{client:"Vodafone",project:"Usage Analytics",duration:"2022-2023"}]},
-{name:"Arjun Patel",designation:"Data Engineer",photo:"https://randomuser.me/api/portraits/men/5.jpg",skills:["Spark","ETL"],status:"available",currentProject:null,experience:[{client:"Amazon",project:"ETL Data Pipelines",duration:"2023-2024"},{client:"Walmart",project:"Inventory Data Processing",duration:"2022-2023"}]}
+{name:"Ankit Sharma",designation:"Data Engineer",photo:"https://randomuser.me/api/portraits/men/1.jpg",skills:["Python","SQL"],status:"busy",currentProject:"Retail Demand Forecasting",experience:[{client:"Reliance Retail",project:"Sales Forecasting Pipeline",duration:"2023-2024"}]},
+{name:"Priya Verma",designation:"SAP Data Consultant",photo:"https://randomuser.me/api/portraits/women/2.jpg",skills:["SAP","ABAP"],status:"available",currentProject:null,experience:[{client:"Infosys",project:"Data Migration",duration:"2022-2023"}]},
+{name:"Rahul Mehta",designation:"Data Analyst",photo:"https://randomuser.me/api/portraits/men/3.jpg",skills:["SQL","Power BI"],status:"rolling",currentProject:"Finance KPI Dashboard",endDate:"Jun 2026",experience:[{client:"HDFC Bank",project:"Financial Dashboard",duration:"2023-2024"}]},
+{name:"Sneha Iyer",designation:"ML Engineer",photo:"https://randomuser.me/api/portraits/women/4.jpg",skills:["ML","Python"],status:"busy",currentProject:"Customer Churn Model",experience:[{client:"Airtel",project:"Churn Prediction",duration:"2023-2024"}]},
+{name:"Arjun Patel",designation:"Data Engineer",photo:"https://randomuser.me/api/portraits/men/5.jpg",skills:["Spark","ETL"],status:"available",currentProject:null,experience:[{client:"Amazon",project:"ETL Pipelines",duration:"2023-2024"}]},
+{name:"Neha Kapoor",designation:"BI Developer",photo:"https://randomuser.me/api/portraits/women/6.jpg",skills:["Power BI","SQL"],status:"rolling",currentProject:"Sales Dashboard",endDate:"Aug 2026",experience:[{client:"Wipro",project:"BI Reporting",duration:"2022-2023"}]},
+{name:"Karan Singh",designation:"Data Engineer",photo:"https://randomuser.me/api/portraits/men/7.jpg",skills:["AWS","Glue"],status:"busy",currentProject:"Cloud Data Lake",experience:[{client:"TCS",project:"Data Lake Setup",duration:"2023-2024"}]},
+{name:"Vikram Rao",designation:"Frontend + Analytics",photo:"https://randomuser.me/api/portraits/men/8.jpg",skills:["React","Charts"],status:"available",currentProject:null,experience:[{client:"Zomato",project:"Analytics UI",duration:"2022-2023"}]},
+{name:"Aisha Khan",designation:"QA Analyst",photo:"https://randomuser.me/api/portraits/women/9.jpg",skills:["Testing","Automation"],status:"rolling",currentProject:"Automation Suite",endDate:"Jul 2026",experience:[{client:"Capgemini",project:"QA Automation",duration:"2023-2024"}]},
+{name:"Rohit Das",designation:"Data Scientist",photo:"https://randomuser.me/api/portraits/men/10.jpg",skills:["ML","AI"],status:"busy",currentProject:"Prediction Engine",experience:[{client:"Accenture",project:"ML Models",duration:"2023-2024"}]},
+{name:"Pooja Nair",designation:"Data Analyst",photo:"https://randomuser.me/api/portraits/women/11.jpg",skills:["Excel","SQL"],status:"available",currentProject:null,experience:[{client:"EY",project:"Business Reports",duration:"2022-2023"}]},
+{name:"Manish Gupta",designation:"Big Data Engineer",photo:"https://randomuser.me/api/portraits/men/12.jpg",skills:["Hadoop","Spark"],status:"busy",currentProject:"Log Processing",experience:[{client:"Infosys",project:"Big Data Pipelines",duration:"2023-2024"}]},
+{name:"Divya Reddy",designation:"BI Analyst",photo:"https://randomuser.me/api/portraits/women/13.jpg",skills:["Tableau","SQL"],status:"rolling",currentProject:"Marketing Dashboard",endDate:"Sep 2026",experience:[{client:"Deloitte",project:"Marketing Analytics",duration:"2022-2023"}]},
+{name:"Siddharth Jain",designation:"Data Engineer",photo:"https://randomuser.me/api/portraits/men/14.jpg",skills:["Kafka","ETL"],status:"available",currentProject:null,experience:[{client:"IBM",project:"Streaming Pipelines",duration:"2023-2024"}]}
 ];
 
 var list=document.getElementById("profileList");
@@ -146,11 +155,14 @@ function goHome(){renderStats();renderProfiles(profiles);}
 function filterProfiles(q){q=q.toLowerCase();renderProfiles(profiles.filter(function(p){return p.name.toLowerCase().includes(q)}));}
 
 function renderStats(){
-var html="<div class='card'><h2>Dashboard</h2><div class='stats'>";
-html+="<div class='stat-box' onclick='filterStatus(\"all\")'><b>"+profiles.length+"</b><br>Total</div>";
-html+="<div class='stat-box' onclick='filterStatus(\"available\")'><b>"+profiles.filter(function(p){return p.status==='available'}).length+"</b><br>Available</div>";
-html+="<div class='stat-box' onclick='filterStatus(\"busy\")'><b>"+profiles.filter(function(p){return p.status==='busy'}).length+"</b><br>Busy</div>";
-html+="<div class='stat-box' onclick='filterStatus(\"rolling\")'><b>"+profiles.filter(function(p){return p.status==='rolling'}).length+"</b><br>Rolling</div>";
+var html="";
+html+="<div class='card' style='height:100%;display:flex;flex-direction:column;justify-content:center;'>";
+html+="<h2 style='margin-bottom:20px'>Dashboard</h2>";
+html+="<div class='stats' style='flex:1;align-items:center'>";
+html+="<div class='stat-box' style='flex:1;height:120px;display:flex;flex-direction:column;justify-content:center' onclick='filterStatus(\"all\")'><b>"+profiles.length+"</b><br>Total</div>";
+html+="<div class='stat-box' style='flex:1;height:120px;display:flex;flex-direction:column;justify-content:center' onclick='filterStatus(\"available\")'><b>"+profiles.filter(function(p){return p.status==='available'}).length+"</b><br>Available</div>";
+html+="<div class='stat-box' style='flex:1;height:120px;display:flex;flex-direction:column;justify-content:center' onclick='filterStatus(\"busy\")'><b>"+profiles.filter(function(p){return p.status==='busy'}).length+"</b><br>Busy</div>";
+html+="<div class='stat-box' style='flex:1;height:120px;display:flex;flex-direction:column;justify-content:center' onclick='filterStatus(\"rolling\")'><b>"+profiles.filter(function(p){return p.status==='rolling'}).length+"</b><br>Rolling</div>";
 html+="</div></div>";
 
 details.innerHTML=html;
