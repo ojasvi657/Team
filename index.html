@@ -8,40 +8,47 @@
 :root{--primary:#1f3a5f;--accent:#3b82f6;--bg:#f4f6f9;--card:#ffffff;--text:#1f2937;--muted:#6b7280;--border:#e5e7eb}
 *{box-sizing:border-box}
 body{font-family:Segoe UI,Arial;margin:0;background:var(--bg);color:var(--text)}
-header{background:var(--primary);color:#fff;padding:15px 20px;display:flex;justify-content:space-between}
-.container{display:flex;height:calc(100vh - 60px)}
+
+header{background:linear-gradient(90deg,#1f3a5f,#2b5c8a);color:#fff;padding:18px 24px;display:flex;justify-content:space-between;align-items:center}
+header h3{margin:0;font-size:20px}
+header div{opacity:.9}
+
+.container{display:flex;height:calc(100vh - 64px)}
 .sidebar{width:28%;background:#fff;padding:15px;border-right:1px solid var(--border);overflow:auto}
 .content{width:72%;padding:20px;overflow:auto}
-.profile-card{display:flex;gap:12px;padding:12px;border:1px solid var(--border);border-radius:12px;margin-bottom:10px;cursor:pointer;align-items:center;transition:.2s}
-.profile-card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.profile-card img{border-radius:50%}
-.tag{background:var(--accent);color:#fff;padding:5px 10px;border-radius:20px;margin:4px;display:inline-block;font-size:12px}
-.status{padding:6px 12px;border-radius:20px;font-size:12px;font-weight:500}
-.available{background:#16a34a;color:#fff}
-.busy{background:#dc2626;color:#fff}
-.rolling{background:#f59e0b;color:#fff}
-.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:15px}
-.timeline{border-left:3px solid var(--accent);padding-left:12px;margin-top:10px}
-.timeline div{margin-bottom:8px}
-.search-box input{width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);margin-bottom:10px}
-.stat-box{cursor:pointer;background:#fff;border:1px solid var(--border);border-radius:12px;padding:15px;margin:6px;text-align:center;flex:1;min-width:120px}
-.stats{display:flex;flex-wrap:wrap}
-.profile-header{display:flex;align-items:center;gap:15px}
-.profile-header img{border-radius:50%}
-.muted{color:var(--muted)}
+
+.search-box input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);margin-bottom:12px}
+
+.profile-card{display:flex;gap:12px;padding:12px;border:1px solid var(--border);border-radius:14px;margin-bottom:10px;cursor:pointer;align-items:center;transition:.25s}
+.profile-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,0.06)}
+.profile-card img{border-radius:50%;border:2px solid var(--border)}
+.profile-card b{font-size:14px}
+
+.card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:15px;box-shadow:0 8px 18px rgba(0,0,0,0.05)}
+.card h2{margin-top:0}
+
+.tag{background:var(--accent);color:#fff;padding:6px 10px;border-radius:20px;margin:4px;display:inline-block;font-size:12px}
+
+.status{padding:6px 12px;border-radius:20px;font-size:12px;color:#fff;font-weight:500}
+.available{background:#16a34a}
+.busy{background:#dc2626}
+.rolling{background:#f59e0b}
+
+.actions{display:flex;justify-content:space-between;margin-bottom:15px}
 .btn{padding:8px 14px;border:none;background:var(--accent);color:#fff;border-radius:8px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
 .btn:hover{opacity:.9}
-.actions-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
-.actions-right{display:flex;gap:10px}
-.page-title{font-size:18px;font-weight:600}
-.btn-secondary{background:#374151}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center;z-index:1000}
-.modal{background:#fff;border-radius:14px;padding:18px;width:380px;max-width:90%;box-shadow:0 10px 30px rgba(0,0,0,0.2)}
-.modal h3{margin-top:0}
-.modal .row{margin-bottom:10px}
-.modal input, .modal select{width:100%;padding:8px;border:1px solid var(--border);border-radius:8px}
-.modal .actions{display:flex;gap:10px;justify-content:flex-end;margin-top:10px}
-.toast{position:fixed;bottom:20px;right:20px;background:#111827;color:#fff;padding:10px 14px;border-radius:8px;display:none;z-index:1100}
+
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+.stat-box{flex:1;background:#fff;padding:14px;border-radius:14px;text-align:center;border:1px solid var(--border);cursor:pointer;transition:.2s}
+.stat-box:hover{border-color:var(--accent);transform:translateY(-2px)}
+.stat-box b{font-size:18px}
+
+.timeline{border-left:3px solid var(--accent);padding-left:12px;margin-top:10px}
+.timeline div{margin-bottom:8px}
+
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center}
+.modal-box{background:#fff;padding:20px;border-radius:14px;width:320px;box-shadow:0 10px 30px rgba(0,0,0,0.2)}
+.modal-box h3{margin-top:0}
 </style>
 </head>
 <body>
@@ -52,164 +59,108 @@ header{background:var(--primary);color:#fff;padding:15px 20px;display:flex;justi
 </header>
 
 <div class="container">
-
 <div class="sidebar">
-  <div class="search-box">
-    <input type="text" placeholder="Search by name or skill" onkeyup="filterProfiles(this.value)">
-  </div>
-  <div id="profileList"></div>
+<div class="search-box">
+<input type="text" placeholder="Search employees..." onkeyup="filterProfiles(this.value)">
+</div>
+<div id="profileList"></div>
 </div>
 
-<div class="content" id="profileDetails"></div>
-
+<div class="content" id="details"></div>
 </div>
 
-<div class="modal-overlay" id="assignModalOverlay">
-  <div class="modal">
-    <h3>Assign to Project</h3>
-    <div class="row">
-      <label>Employee</label>
-      <input id="assignEmployee" disabled />
-    </div>
-    <div class="row">
-      <label>Project Name</label>
-      <input id="projectName" placeholder="Enter project name" />
-    </div>
-    <div class="row">
-      <label>Role</label>
-      <select id="projectRole">
-        <option>Developer</option>
-        <option>Lead</option>
-        <option>Consultant</option>
-        <option>QA</option>
-      </select>
-    </div>
-    <div class="row">
-      <label>Start Date</label>
-      <input id="startDate" type="date" />
-    </div>
-    <div class="actions">
-      <button class="btn-secondary btn" onclick="closeModal()">Cancel</button>
-      <button class="btn" onclick="assignProject()">Assign</button>
-    </div>
-  </div>
+<div class="modal" id="modal">
+<div class="modal-box">
+<h3>Assign Project</h3>
+<input id="emp" disabled style="width:100%;margin-bottom:10px">
+<input placeholder="Project Name" style="width:100%;margin-bottom:10px">
+<button class="btn" onclick="closeModal()">Assign</button>
 </div>
-
-<div class="toast" id="toast">Assigned successfully</div>
+</div>
 
 <script>
-const profiles = [
-{name:"Ankit Sharma",designation:"Data Engineer",photo:"https://randomuser.me/api/portraits/men/32.jpg",skills:["Python","Spark","SQL"],experience:[{client:"ABC",duration:"2022-23"}],currentProject:"Retail Analytics Platform",status:"busy"},
-{name:"Priya Verma",designation:"SAP Consultant",photo:"https://randomuser.me/api/portraits/women/44.jpg",skills:["SAP","ABAP","Fiori"],experience:[{client:"GlobalTech",duration:"2021-23"}],currentProject:null,status:"available"},
-{name:"Rahul Mehta",designation:"Data Analyst",photo:"https://randomuser.me/api/portraits/men/12.jpg",skills:["SQL","Power BI"],experience:[{client:"Insight",duration:"2022-24"}],currentProject:"Finance Dashboard Revamp",status:"rolling",endDate:"Jun 2026"},
-{name:"Sneha Iyer",designation:"ML Engineer",photo:"https://randomuser.me/api/portraits/women/68.jpg",skills:["ML","Python","NLP"],experience:[{client:"AI Labs",duration:"2021-23"}],currentProject:"Chatbot AI System",status:"busy"},
-{name:"Arjun Patel",designation:"Backend Developer",photo:"https://randomuser.me/api/portraits/men/55.jpg",skills:["Java","Spring"],experience:[{client:"FinServe",duration:"2020-22"}],currentProject:null,status:"available"},
-{name:"Neha Kapoor",designation:"UI/UX Designer",photo:"https://randomuser.me/api/portraits/women/25.jpg",skills:["Figma","UX"],experience:[{client:"DesignPro",duration:"2021-24"}],currentProject:"Mobile App Redesign",status:"rolling",endDate:"Aug 2026"},
-{name:"Karan Singh",designation:"DevOps Engineer",photo:"https://randomuser.me/api/portraits/men/77.jpg",skills:["AWS","Docker"],experience:[{client:"CloudOps",duration:"2022-Present"}],currentProject:"Cloud Migration",status:"busy"},
-{name:"Vikram Rao",designation:"Frontend Developer",photo:"https://randomuser.me/api/portraits/men/41.jpg",skills:["React","JS","CSS"],experience:[{client:"WebCorp",duration:"2021-23"}],currentProject:null,status:"available"},
-{name:"Aisha Khan",designation:"QA Engineer",photo:"https://randomuser.me/api/portraits/women/52.jpg",skills:["Testing","Selenium"],experience:[{client:"Testify",duration:"2022-24"}],currentProject:"Automation Suite",status:"rolling",endDate:"Jul 2026"},
-{name:"Rohit Das",designation:"Data Scientist",photo:"https://randomuser.me/api/portraits/men/65.jpg",skills:["Python","ML","AI"],experience:[{client:"DataLabs",duration:"2021-Present"}],currentProject:"Prediction Engine",status:"busy"}
+var profiles=[
+{name:"Ankit Sharma",designation:"Data Engineer",photo:"https://randomuser.me/api/portraits/men/1.jpg",skills:["Python","SQL"],status:"busy",currentProject:"Retail Demand Forecasting",experience:[{client:"Reliance Retail",project:"Sales Forecasting Pipeline",duration:"2023-2024"},{client:"Flipkart",project:"Customer Segmentation",duration:"2022-2023"}]},
+{name:"Priya Verma",designation:"SAP Data Consultant",photo:"https://randomuser.me/api/portraits/women/2.jpg",skills:["SAP","ABAP"],status:"available",currentProject:null,experience:[{client:"Infosys",project:"Data Migration (SAP BW)",duration:"2022-2023"},{client:"TCS",project:"Reporting Dashboard",duration:"2021-2022"}]},
+{name:"Rahul Mehta",designation:"Data Analyst",photo:"https://randomuser.me/api/portraits/men/3.jpg",skills:["SQL","Power BI"],status:"rolling",currentProject:"Finance KPI Dashboard",endDate:"Jun 2026",experience:[{client:"HDFC Bank",project:"Financial Analytics Dashboard",duration:"2023-2024"},{client:"ICICI",project:"Loan Risk Analysis",duration:"2022-2023"}]},
+{name:"Sneha Iyer",designation:"ML Engineer",photo:"https://randomuser.me/api/portraits/women/4.jpg",skills:["ML","Python"],status:"busy",currentProject:"Customer Churn Model",experience:[{client:"Airtel",project:"Churn Prediction",duration:"2023-2024"},{client:"Vodafone",project:"Usage Analytics",duration:"2022-2023"}]},
+{name:"Arjun Patel",designation:"Data Engineer",photo:"https://randomuser.me/api/portraits/men/5.jpg",skills:["Spark","ETL"],status:"available",currentProject:null,experience:[{client:"Amazon",project:"ETL Data Pipelines",duration:"2023-2024"},{client:"Walmart",project:"Inventory Data Processing",duration:"2022-2023"}]}
 ];
 
-const list = document.getElementById("profileList");
-const details = document.getElementById("profileDetails");
+var list=document.getElementById("profileList");
+var details=document.getElementById("details");
 
 function renderProfiles(data){
-  list.innerHTML = "";
-  data.forEach((p, i) => {
-    const d = document.createElement("div");
-    d.className = "profile-card";
-    d.innerHTML = `<img src="${p.photo}" width="45"><div><b>${p.name}</b><div class="muted">${p.designation}</div></div>`;
-    d.onclick = () => showProfile(i);
-    list.appendChild(d);
-  });
+list.innerHTML="";
+for(var i=0;i<data.length;i++){
+var p=data[i];
+var idx=profiles.findIndex(function(x){return x.name===p.name});
+var d=document.createElement("div");
+d.className="profile-card";
+d.innerHTML="<img src='"+p.photo+"' width='48'><div><b>"+p.name+"</b><div style='color:gray;font-size:12px'>"+p.designation+"</div></div>";
+d.onclick=(function(index){return function(){showProfile(index);};})(idx);
+list.appendChild(d);
+}
 }
 
 function showProfile(i){
-  const p = profiles[i];
-  details.innerHTML = `
-  <div class="actions-bar">
-    <div class="page-title">Profile Details</div>
-    <div class="actions-right">
-      <button class="btn" onclick="goHome()">← Dashboard</button>
-      <button class="btn" onclick="openAssign(${i})">Assign</button>
-    </div>
-  </div>
+var p=profiles[i];
+var html="";
+html+="<div class='actions'>";
+html+="<button class='btn' onclick='goHome()'>← Dashboard</button>";
+html+="<button class='btn' onclick='openModal("+i+")'>Assign</button>";
+html+="</div>";
 
-  <div class="card">
-    <div class="profile-header">
-      <img src="${p.photo}" width="70">
-      <div>
-        <h2>${p.name}</h2>
-        <div class="muted">${p.designation}</div>
-        ${p.currentProject ? `<div><b>Current Project:</b> ${p.currentProject}</div>` : `<div class="muted">Not assigned to any project</div>`}
-        ${p.status === 'rolling' ? `<div class="muted">Rolling off by: <b>${p.endDate}</b></div>` : ''}
-      </div>
-      <div style="margin-left:auto"><span class="status ${p.status}">${p.status}</span></div>
-    </div>
-  </div>
+html+="<div class='card'>";
+html+="<h2>"+p.name+"</h2>";
+html+="<p style='color:gray'>"+p.designation+"</p>";
+html+= p.currentProject ? "<p><b>Current Project:</b> "+p.currentProject+"</p>" : "<p style='color:gray'>No project assigned</p>";
+if(p.status==='rolling'){ html+="<p style='color:#f59e0b'><b>Rolling off:</b> "+p.endDate+"</p>"; }
+html+="<span class='status "+p.status+"'>"+p.status+"</span>";
+html+="</div>";
 
-  <div class="card">
-    <h3>Skills</h3>
-    ${p.skills.map(s => `<span class="tag">${s}</span>`).join("")}
-  </div>
+html+="<div class='card'><h3>Skills</h3>";
+for(var j=0;j<p.skills.length;j++){ html+="<span class='tag'>"+p.skills[j]+"</span>"; }
+html+="</div>";
 
-  <div class="card">
-    <h3>Project Timeline</h3>
-    <div class="timeline">
-      ${p.experience.map(e => `<div><b>${e.client}</b> <span class="muted">(${e.duration})</span></div>`).join("")}
-    </div>
-  </div>`;
+html+="<div class='card'><h3>Client Project Experience</h3><div class='timeline'>";
+
+if(p.experience && p.experience.length>0){
+  for(var k=0;k<p.experience.length;k++){
+    var exp=p.experience[k];
+    html+="<div><b>"+exp.client+"</b></div>";
+    html+="<div style='color:gray'>"+exp.project+"</div>";
+    html+="<div style='font-size:12px;color:#6b7280'>"+exp.duration+"</div>";
+  }
+}else{
+  html+="<div style='color:gray'>No past project data</div>";
 }
 
-function filterProfiles(q){
-  q = q.toLowerCase();
-  const filtered = profiles.filter(p => p.name.toLowerCase().includes(q) || p.skills.join(" ").toLowerCase().includes(q));
-  renderProfiles(filtered);
+html+="</div></div>";
+
+details.innerHTML=html;
 }
+
+function goHome(){renderStats();renderProfiles(profiles);}
+
+function filterProfiles(q){q=q.toLowerCase();renderProfiles(profiles.filter(function(p){return p.name.toLowerCase().includes(q)}));}
 
 function renderStats(){
-  details.innerHTML = `
-  <div class="card">
-    <h2>Dashboard Overview</h2>
-    <p class="muted">Click on stats to filter employees</p>
-    <div class="stats">
-      <div class="stat-box" onclick="filterByStatus('all')"><b>${profiles.length}</b><br>Total</div>
-      <div class="stat-box" onclick="filterByStatus('available')"><b>${profiles.filter(p=>p.status==='available').length}</b><br>Available</div>
-      <div class="stat-box" onclick="filterByStatus('busy')"><b>${profiles.filter(p=>p.status==='busy').length}</b><br>Busy</div>
-      <div class="stat-box" onclick="filterByStatus('rolling')"><b>${profiles.filter(p=>p.status==='rolling').length}</b><br>Rolling</div>
-    </div>
-  </div>`;
+var html="<div class='card'><h2>Dashboard</h2><div class='stats'>";
+html+="<div class='stat-box' onclick='filterStatus(\"all\")'><b>"+profiles.length+"</b><br>Total</div>";
+html+="<div class='stat-box' onclick='filterStatus(\"available\")'><b>"+profiles.filter(function(p){return p.status==='available'}).length+"</b><br>Available</div>";
+html+="<div class='stat-box' onclick='filterStatus(\"busy\")'><b>"+profiles.filter(function(p){return p.status==='busy'}).length+"</b><br>Busy</div>";
+html+="<div class='stat-box' onclick='filterStatus(\"rolling\")'><b>"+profiles.filter(function(p){return p.status==='rolling'}).length+"</b><br>Rolling</div>";
+html+="</div></div>";
+
+details.innerHTML=html;
 }
 
-function filterByStatus(s){
-  if(s === 'all') renderProfiles(profiles);
-  else renderProfiles(profiles.filter(p => p.status === s));
-}
+function filterStatus(s){ if(s==='all') renderProfiles(profiles); else renderProfiles(profiles.filter(function(p){return p.status===s})); }
 
-function goHome(){
-  renderStats();
-  renderProfiles(profiles);
-}
+function openModal(i){document.getElementById("modal").style.display="flex";document.getElementById("emp").value=profiles[i].name;}
+function closeModal(){document.getElementById("modal").style.display="none";}
 
-function openAssign(i){
-  const p = profiles[i];
-  document.getElementById('assignEmployee').value = p.name;
-  document.getElementById('assignModalOverlay').style.display = 'flex';
-}
-
-function closeModal(){
-  document.getElementById('assignModalOverlay').style.display = 'none';
-}
-
-function assignProject(){
-  closeModal();
-  const t = document.getElementById('toast');
-  t.style.display = 'block';
-  setTimeout(()=> t.style.display='none', 2000);
-}
-
-// initial load
 renderProfiles(profiles);
 renderStats();
 </script>
